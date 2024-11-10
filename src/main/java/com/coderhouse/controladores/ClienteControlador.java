@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.coderhouse.dtos.AsignarVentaDTO;
 import com.coderhouse.modelos.Cliente;
 import com.coderhouse.servicios.ClienteServicio;
 
@@ -87,11 +89,22 @@ public class ClienteControlador {
 		
 	}
 	
+	@PostMapping("/asignar-venta")
+	public ResponseEntity <Cliente> asignarVentaaCliente(@RequestBody AsignarVentaDTO asignarventaDTO){
+		try {
+			
+			Cliente clienteAsignado = clienteservicio.asignarClienteaVenta(asignarventaDTO.getClienteId(), asignarventaDTO.getClienteId());
+			return ResponseEntity.ok(clienteAsignado);
+			
+		}catch(IllegalArgumentException e){
+			return  ResponseEntity.notFound().build();			
+		}catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		
+		
+		
+	}
 	
 	
-	
-	
-	
-	
-
 }
