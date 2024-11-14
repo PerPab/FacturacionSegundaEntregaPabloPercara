@@ -2,6 +2,9 @@ package com.coderhouse.modelos;
 
 
 import java.util.List;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,16 +13,23 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
+@Tag(name = "Gestion de Productos", description = "Endpoints productos")
+@Schema(description = "Esquema de productos")
 @Table(name = "Productos")
 public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(description = "Id de Producto", requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long id;
-	
+	@Schema(description = "Nombre Producto")
 	private String nombre;
+	@Schema(description = "Descripcion Producto")
 	private String descripcion;
+	@Schema(description = "Precio Producto")
 	private Double precioUnitario;
+	@Schema(description = "Stock Producto")
 	private Integer stock;
+	
 	
 	@OneToMany(mappedBy = "producto")
     private List<DetalleVenta> detallesVenta;

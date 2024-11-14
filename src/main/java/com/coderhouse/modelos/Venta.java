@@ -2,6 +2,9 @@ package com.coderhouse.modelos;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,10 +16,13 @@ import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
 @Entity
+@Tag(name = "Gestion de ventas", description = "Endpoints ventas")
+@Schema(description = "Esquema de ventas")
 @Table(name = "Ventas")
 public class Venta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(description = "Id de Venta", requiredMode = Schema.RequiredMode.REQUIRED)
 	private Long id;
 	
 	private LocalDateTime fecha = LocalDateTime.now();

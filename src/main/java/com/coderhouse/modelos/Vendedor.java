@@ -1,5 +1,6 @@
 package com.coderhouse.modelos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Schema(description = "Esquema de Vendedor")
 
 public class Vendedor {
 	
+	@Schema(description = "Id de Vendedor")
 	private String id;
 	private String nombre;
 	private String apellido;
